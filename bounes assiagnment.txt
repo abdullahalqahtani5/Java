@@ -1,0 +1,119 @@
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class Last extends JFrame implements ActionListener {
+	
+	 JLabel l1;  
+	    JRadioButton jb[]=new JRadioButton[5];  
+	    JButton b1,b2;  
+	    ButtonGroup bg;  
+	    int count=0,current=0;
+	public Last()  
+	    {  
+	    	setTitle(" Java GUI MCQ  ");
+	        l1=new JLabel();  
+	        add(l1);  
+	        bg=new ButtonGroup();  
+	        for(int i=0;i<5;i++)  
+	        {  
+	            jb[i]=new JRadioButton();     
+	            add(jb[i]);  
+	            bg.add(jb[i]);  
+	        }  
+	        b1=new JButton("Next");  
+	      b2=new JButton("Cancel");  
+
+	        b1.addActionListener(this); 
+	        b2.addActionListener(this);
+	        add(b1);
+	       add(b2);
+	        set();  
+	        setDefaultCloseOperation(EXIT_ON_CLOSE);  
+	        setLayout(new FlowLayout());  
+	        setVisible(true);  
+	        setSize(600,350);  
+	    }  
+		
+ public void actionPerformed(ActionEvent e)  
+ {  
+	 if(e.getSource()==b2) {
+bg.clearSelection();
+
+	 }
+     if(e.getSource()==b1)  
+     {  
+         if(check())  
+             count=count+1;  
+         current++;  
+         set();    
+         if(current==4)  
+         {  
+             b2.setEnabled(false);  
+             b1.setText("Result");  
+         }  
+     }     
+   
+     if(e.getActionCommand().equals("Result"))  
+     {  
+         if(check())  
+             count=count+1;  
+         current++;  
+         JOptionPane.showMessageDialog(this,"Your Mark is ="+count+"/5");  
+         System.exit(0);  
+	        }  
+	        }
+	
+	 void set() {
+		 jb[4].setSelected(true);
+		 jb[4].setVisible(false);  
+
+	     if(current==0)  
+	     {  
+	         l1.setText("Que3: How  many Prays does the muslim in a day ?");  
+	         jb[0].setText("19 times");jb[1].setText("9 times");jb[2].setText("5 times");jb[3].setText("unlimited");   
+	     }  
+	     if(current==1)  
+	     {  
+	         l1.setText("Que2: What The Capital Of SaudiArabia");  
+	         jb[0].setText("Riyadh");jb[1].setText("Paris");jb[2].setText("Germany");jb[3].setText("Los Anglos");  
+	     }  
+	     if(current==2)  
+	     {  
+	         l1.setText("Que3: Which Of These Is A Vegtebles ?");  
+	         jb[0].setText("Cucmber");jb[1].setText("carrot");jb[2].setText("Tomato");jb[3].setText("All Options");  
+	     }  
+	     if(current==3)  
+	     {  
+	         l1.setText("Que4: What The Main Meal In Saudi Arabia      ?");  
+	         jb[0].setText("Kabsah");jb[1].setText("Burger");jb[2].setText("Pizza");jb[3].setText("Sushi");  
+	     }  
+	     if(current==4)  
+	     {  
+	         l1.setText("Que5: How many Version Of the wholy quran       ?");  
+	         jb[0].setText("18 ver");jb[1].setText("5 ver");jb[2].setText("7 ver");jb[3].setText("1 ver");  
+	     }  
+	  
+
+		}
+	boolean check()  
+    {  
+        if(current==0)  
+            return(jb[2].isSelected());  
+        if(current==1)  
+            return(jb[0].isSelected());  
+        if(current==2)  
+            return(jb[3].isSelected());  
+        if(current==3)  
+            return(jb[0].isSelected());  
+        if(current==4)  
+            return(jb[3].isSelected());  
+ 
+     return false;  
+    }
+	public static void main(String [] args) {
+		new Last();
+	}
+	
+}
